@@ -1,101 +1,123 @@
-import Image from "next/image";
+// src/app/page.tsx
+import { NextPage } from 'next';
+import Link from 'next/link';
+import Image from 'next/image';
 
-export default function Home() {
+const articles = [
+  {
+    id: 1,
+    title: 'Introduction à l’Accessibilité Web',
+    excerpt: 'Découvrez pourquoi l’accessibilité est cruciale pour rendre le web utilisable par tous.',
+    href: '/articles/introduction-accessibilite',
+    imageSrc: '/images/accessibilite-web.jpg',
+  },
+  {
+    id: 2,
+    title: '10 Bonnes Pratiques pour un Site Accessible',
+    excerpt: 'Adoptez ces bonnes pratiques pour améliorer l’accessibilité de votre site.',
+    href: '/articles/bonnes-pratiques-accessibilite',
+    imageSrc: '/images/bonnes-pratiques.jpg',
+  },
+  {
+    id: 3,
+    title: 'Accessibilité et SEO : Un Duo Gagnant',
+    excerpt: 'Comprenez comment l’accessibilité améliore aussi votre référencement.',
+    href: '/articles/accessibilite-et-seo',
+    imageSrc: '/images/seo-accessibilite.jpg',
+  },
+  {
+    id: 4,
+    title: 'Les ARIA Roles : Bonnes Pratiques',
+    excerpt: 'Apprenez à utiliser les rôles ARIA pour améliorer l’accessibilité de vos applications web.',
+    href: '/articles/aria-roles-pratiques',
+    imageSrc: '/images/aria-roles.jpg',
+  },
+  {
+    id: 5,
+    title: 'Tester l’Accessibilité avec des Outils Gratuits',
+    excerpt: 'Découvrez les meilleurs outils pour tester l’accessibilité de votre site sans frais.',
+    href: '/articles/outils-gratuits-accessibilite',
+    imageSrc: '/images/outils-gratuits.jpg',
+  },
+  {
+    id: 6,
+    title: 'Accessibilité des Formulaires : Ce qu’il faut savoir',
+    excerpt: 'Assurez-vous que vos formulaires soient compréhensibles et utilisables par tous.',
+    href: '/articles/accessibilite-formulaires',
+    imageSrc: '/images/formulaires-accessibles.jpg',
+  },
+  {
+    id: 7,
+    title: 'Créer un Menu Accessible',
+    excerpt: 'Les éléments clés pour concevoir des menus faciles à naviguer pour tous.',
+    href: '/articles/menu-accessible',
+    imageSrc: '/images/menu-accessible.jpg',
+  },
+  {
+    id: 8,
+    title: 'Accessibilité Mobile : Bonnes Pratiques',
+    excerpt: 'Améliorez l’accessibilité de vos applications mobiles avec ces conseils.',
+    href: '/articles/accessibilite-mobile',
+    imageSrc: '/images/accessibilite-mobile.jpg',
+  },
+  {
+    id: 9,
+    title: 'Personnes en Situation de Handicap : Comment concevoir avec empathie',
+    excerpt: 'Adoptez une approche centrée sur l’utilisateur pour concevoir des expériences accessibles.',
+    href: '/articles/conception-empathie',
+    imageSrc: '/images/conception-empathie.jpg',
+  },
+];
+
+const Home: NextPage = () => {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen bg-white p-8">
+      <header className="mb-12 text-center">
+        <h1 className="text-4xl font-extrabold text-gray-900">
+          Blog sur l'Accessibilité
+        </h1>
+        <p className="text-gray-700 mt-2">
+          Explorez des articles et des conseils pour rendre le web plus accessible.
+        </p>
+      </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+      <main className="flex flex-col items-center gap-8">
+        <section className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {articles.map((article) => (
+            <article
+              key={article.id}
+              className="relative p-4 bg-gray-100 shadow-md rounded-lg overflow-hidden transform transition-transform hover:-translate-y-2 hover:shadow-lg focus-within:shadow-lg"
+              tabIndex={0}
+            >
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src={article.imageSrc}
+                  alt={`Illustration pour ${article.title}`}
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-lg opacity-40 hover:opacity-50 transition-opacity"
+                />
+              </div>
+              <div className="relative z-10">
+                <h2 className="text-2xl font-semibold text-indigo-700 mb-2">
+                  <Link href={article.href} className="hover:underline focus:outline-none focus:ring-2 focus:ring-indigo-700">
+                    {article.title}
+                  </Link>
+                </h2>
+                <p className="text-gray-600">{article.excerpt}</p>
+              </div>
+            </article>
+          ))}
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      <footer className="mt-16 text-center">
+        <p className="text-gray-500">
+          &copy; 2024 Blog Accessibilité. Tous droits réservés.
+        </p>
       </footer>
     </div>
   );
-}
+};
+
+export default Home;
