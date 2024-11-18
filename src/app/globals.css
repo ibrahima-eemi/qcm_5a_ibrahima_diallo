@@ -5,17 +5,97 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #4f46e5;
+  --secondary: #6366f1;
+  --accent: #facc15;
+  --hover-bg: #f3f4f6;
+  --focus-ring: #2563eb;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary: #6366f1;
+    --secondary: #818cf8;
+    --hover-bg: #1f2937;
+    --focus-ring: #60a5fa;
   }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', Arial, sans-serif; 
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: var(--secondary);
+}
+
+button {
+  background-color: var(--primary);
+  color: var(--background);
+  border-radius: 9999px;
+  padding: 0.5rem 1.25rem;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: var(--secondary);
+  transform: translateY(-2px);
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.accordion-header {
+  background-color: var(--hover-bg);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.accordion-header:hover {
+  background-color: var(--accent);
+}
+
+.accordion-header:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--focus-ring);
+}
+
+.accordion-panel {
+  background-color: var(--background);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.accordion-item {
+  margin-bottom: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
 }

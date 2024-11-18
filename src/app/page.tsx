@@ -71,12 +71,12 @@ const articles = [
 
 const Home: NextPage = () => {
   return (
-    <div className="min-h-screen bg-white p-8">
+    <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white p-8 transition-colors duration-300">
       <header className="mb-12 text-center">
-        <h1 className="text-4xl font-extrabold text-gray-900">
+        <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white">
           Blog sur l'Accessibilité
         </h1>
-        <p className="text-gray-700 mt-2">
+        <p className="text-gray-700 dark:text-gray-200 mt-2">
           Explorez des articles et des conseils pour rendre le web plus accessible.
         </p>
       </header>
@@ -86,25 +86,32 @@ const Home: NextPage = () => {
           {articles.map((article) => (
             <article
               key={article.id}
-              className="relative p-4 bg-gray-100 shadow-md rounded-lg overflow-hidden transform transition-transform hover:-translate-y-2 hover:shadow-lg focus-within:shadow-lg"
+              className="relative p-4 bg-gray-100 dark:bg-gray-800 shadow-md rounded-lg overflow-hidden transform transition-transform hover:-translate-y-2 hover:shadow-lg focus-within:shadow-lg"
               tabIndex={0}
             >
               <div className="absolute inset-0 z-0">
                 <Image
                   src={article.imageSrc}
-                  alt={`Illustration pour ${article.title}`}
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-lg opacity-40 hover:opacity-50 transition-opacity"
+                  alt={`Illustration de l'article "${article.title}"`}
+                  layout="responsive"
+                  width={400}
+                  height={300}
+                  className="rounded-lg opacity-60 hover:opacity-80 transition-opacity"
                 />
               </div>
               <div className="relative z-10">
-                <h2 className="text-2xl font-semibold text-indigo-700 mb-2">
-                  <Link href={article.href} className="hover:underline focus:outline-none focus:ring-2 focus:ring-indigo-700">
+                <h2 className="text-2xl font-semibold text-indigo-600 dark:text-indigo-300 mb-2">
+                  <Link
+                    href={article.href}
+                    aria-label={`Lire l'article : ${article.title}`}
+                    className="hover:underline focus:outline-none focus:ring-2 focus:ring-indigo-600 dark:focus:ring-indigo-300"
+                  >
                     {article.title}
                   </Link>
                 </h2>
-                <p className="text-gray-600">{article.excerpt}</p>
+                <p className="text-gray-800 dark:text-gray-300 leading-relaxed">
+                  {article.excerpt}
+                </p>
               </div>
             </article>
           ))}
@@ -112,7 +119,7 @@ const Home: NextPage = () => {
       </main>
 
       <footer className="mt-16 text-center">
-        <p className="text-gray-500">
+        <p className="text-gray-600 dark:text-gray-400">
           &copy; 2024 Blog Accessibilité. Tous droits réservés.
         </p>
       </footer>
